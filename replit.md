@@ -10,9 +10,10 @@ The application follows a full-stack architecture with clear separation between 
 
 - **Frontend**: React with TypeScript, using Vite as the build tool
 - **Backend**: Express.js server with TypeScript
-- **Database**: PostgreSQL with Drizzle ORM (configured but not fully implemented)
+- **Database**: PostgreSQL with Drizzle ORM (fully implemented with transactions, alerts, and balance history)
 - **Styling**: Tailwind CSS with shadcn/ui component library
 - **State Management**: TanStack Query for server state management
+- **Wallet Integration**: Reown AppKit for multi-wallet connectivity (ready for configuration)
 
 ## Key Components
 
@@ -87,8 +88,25 @@ The application follows a full-stack architecture with clear separation between 
 - **Server Deployment**: Node.js server with Express
 - **Database**: PostgreSQL (Neon or similar cloud provider)
 
+## Recent Changes
+
+### Database Integration (January 01, 2025)
+- Implemented PostgreSQL database with Drizzle ORM
+- Added tables for transactions, alerts, wallet balances, and balance history
+- Created comprehensive storage interface with CRUD operations
+- Added API routes for database interactions (/api/transactions, /api/alerts, /api/balance)
+- Successfully migrated from in-memory storage to persistent database storage
+
+### AppKit Wallet Integration (January 01, 2025)
+- Integrated Reown AppKit for multi-wallet connectivity
+- Configured support for Arbitrum, Mainnet, and Polygon networks
+- Added wallet connection component with account management
+- Enabled 500+ wallet support including MetaMask, WalletConnect, and social logins
+- Project ID: 8a81e704ed22e53debea9db88f91bfcb
+
 ## Changelog
 - July 01, 2025. Initial setup
+- January 01, 2025. Database integration and AppKit wallet connectivity
 
 ## User Preferences
 

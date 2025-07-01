@@ -4,6 +4,7 @@ import axios from "axios";
 import WalletOverview from "./wallet-overview";
 import QuickActions from "./quick-actions";
 import TransactionsList from "./transactions-list";
+import WalletConnect from "./wallet-connect";
 import { Shield, HeartPulse } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -116,19 +117,26 @@ export default function SafeDashboard() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        <WalletOverview 
-          address={SAFE_ADDRESS}
-          balance={balance}
-          isLoading={balanceLoading}
-        />
-        <QuickActions 
-          repoStats={repoStats}
-          isRepoLoading={repoLoading}
-          onSendAlert={sendDiscordAlert}
-          isAlertSending={isAlertSending}
-          githubRepo={GITHUB_REPO}
-        />
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+        <div className="lg:col-span-2">
+          <WalletOverview 
+            address={SAFE_ADDRESS}
+            balance={balance}
+            isLoading={balanceLoading}
+          />
+        </div>
+        <div className="space-y-6">
+          <QuickActions 
+            repoStats={repoStats}
+            isRepoLoading={repoLoading}
+            onSendAlert={sendDiscordAlert}
+            isAlertSending={isAlertSending}
+            githubRepo={GITHUB_REPO}
+          />
+        </div>
+        <div>
+          <WalletConnect />
+        </div>
       </div>
 
       {/* Recent Transactions */}

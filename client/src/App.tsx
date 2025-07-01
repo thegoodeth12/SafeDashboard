@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Dashboard from "@/pages/dashboard";
 import NotFound from "@/pages/not-found";
+import "./lib/appkit"; // Initialize AppKit
 
 function Router() {
   return (
