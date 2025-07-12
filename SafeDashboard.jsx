@@ -4,7 +4,7 @@ import axios from "axios";
 const SAFE_ADDRESS = process.env.REACT_APP_SAFE_ADDRESS;
 const ARBITRUM_API_KEY = process.env.REACT_APP_ARBISCAN_API_KEY;
 const GITHUB_REPO = process.env.REACT_APP_GITHUB_REPO; // e.g. thegoodeth12/Safe-bot
-const DISCORD_WEBHOOK_URL = process.env.REACT_APP_DISCORD_WEBHOOK;
+const SLACK_WEBHOOK_URL = process.env.REACT_APP_SLACK_WEBHOOK;
 
 export default function SafeDashboard() {
   const [txns, setTxns] = useState([]);
@@ -23,7 +23,7 @@ export default function SafeDashboard() {
         }
       })
       .catch(() => setTxns([]));
-  }, [SAFE_ADDRESS, ARBITRUM_API_KEY]);
+  }, []);
 
   useEffect(() => {
     if (!GITHUB_REPO) return;
@@ -37,7 +37,7 @@ export default function SafeDashboard() {
         });
       })
       .catch(() => setRepoStatus({}));
-  }, [GITHUB_REPO]);
+  }, []);
 
   useEffect(() => {
     if (!SAFE_ADDRESS || !ARBITRUM_API_KEY) return;
@@ -54,18 +54,21 @@ export default function SafeDashboard() {
       }
     };
     fetchBalance();
-  }, [SAFE_ADDRESS, ARBITRUM_API_KEY]);
+  }, []);
 
-  const sendDiscordAlert = async (message) => {
-    if (!DISCORD_WEBHOOK_URL) {
-      alert("Discord webhook URL not set.");
+  const sendSlackAlert = async (message) => {
+    if (!SLACK_WEBHOOK_URL) {
+      alert("Slack webhook URL not set.");
       return;
     }
     try {
-      await axios.post(DISCORD_WEBHOOK_URL, { content: message });
-      alert("Discord alert sent!");
-    } catch {
-      alert("Failed to send Discord alert.");
+      await axios.post(SLACK_WEBHOOK_URL, {
+        text: `🔐 Safe Wallet Alert\n\n${message}`,
+      });
+      alert("✅ Slack alert sent!");
+    } catch (err) {
+      console.error(err);
+      alert("❌ Failed to send Slack alert.");
     }
   };
 
@@ -96,8 +99,8 @@ export default function SafeDashboard() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {txn.hash.substring(0, 10)}... - {txn.value / 1e18} ETH -{" "}
-              {txn.isError === "0" ? "Success" : "Fail"}
+              {txn.hash.substring(0, 10)}... - {(txn.value / 1e18).toFixed(4)} ETH -{" "}
+              {txn.isError === "0" ? "✅ Success" : "❌ Fail"}
             </a>
           </li>
         ))}
@@ -105,20 +108,20 @@ export default function SafeDashboard() {
 
       <h2>GitHub Repo Status</h2>
       <ul>
-        <li>Stars: {repoStatus.stars ?? "Loading..."}</li>
-        <li>Forks: {repoStatus.forks ?? "Loading..."}</li>
-        <li>Open Issues: {repoStatus.issues ?? "Loading..."}</li>
+        <li>⭐ Stars: {repoStatus.stars ?? "Loading..."}</li>
+        <li>🍴 Forks: {repoStatus.forks ?? "Loading..."}</li>
+        <li>🐛 Open Issues: {repoStatus.issues ?? "Loading..."}</li>
       </ul>
 
       <button
         onClick={() =>
-          sendDiscordAlert(
-            `Safe Wallet ${SAFE_ADDRESS} dashboard check at ${new Date().toLocaleTimeString()}`
+          sendSlackAlert(
+            `Dashboard check for Safe Wallet ${SAFE_ADDRESS} at ${new Date().toLocaleTimeString()}`
           )
         }
         style={{ padding: "10px 20px", cursor: "pointer", marginTop: 20 }}
       >
-        Send Test Discord Alert
+        Send Test Slack Alert
       </button>
     </div>
   );
