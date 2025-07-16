@@ -1,43 +1,22 @@
-# thegoodeth Safe Dashboard
+# 🔐 Gnosis-vault — Custom Safe Wallet dApp
 
-## Setup & Deployment
+A fully automated, secure, multi-signature wallet interface powered by [Safe{Wallet}](https://safe.global/), [Reown AppKit](https://reown.com/), GitHub Actions, and Discord notifications.
 
-1. Clone this repo.
-
-2. Create a `.env` file in the root with these variables:
-
-```
-REACT_APP_SAFE_ADDRESS=0x821f2b40d965b81202b181Aba1c7a380C49Ed675
-REACT_APP_ARBISCAN_API_KEY=YourArbiscanApiKeyHere
-REACT_APP_GITHUB_REPO=thegoodeth12/Safe-bot
-REACT_APP_DISCORD_WEBHOOK=https://discord.com/api/webhooks/1384032499830882454/ijOIBfKKjbdgpULAPicki2Zlch0-ADDiZTYr1tX2LhLCo3tTmRP-bbl2L-CNKUrwZgaU
-```
-
-3. Run:
-
-```bash
-npm install
-npm start
-```
-
-4. For production deployment, run:
-
-```bash
-npm run build
-```
-
-5. Deploy the build folder on Vercel or your favorite static host.
-
-6. Configure your custom domain `Chatgtp-bot-reown.xyz` on Vercel dashboard.
+> Custom-built for `0x821f2b40d965b81202b181Aba1c7a380C49Ed675` on Arbitrum — signed by `0xAfD5f60aA8eb4F488eAA0eF98c1C5B0645D9A0A0`.
 
 ---
 
-### Features
+## ⚙️ Features
 
-- Live Safe Wallet ETH balance & last 10 txns from Arbitrum  
-- GitHub repo stats (stars, forks, open issues)  
-- Discord webhook alert test button
+- ✅ Multi-sig transaction dashboard (Safe SDK)
+- ✅ GitHub-triggered proposals and signer actions
+- ✅ Discord webhook alerts (real-time tx updates)
+- ✅ Dynamic org README auto-updated by GitHub Actions
+- ✅ Reown AppKit frontend with Safe dashboard UI
+- ✅ Custom domain: `https://chatgtp-bot-reown.xyz`
+- ✅ Secure self-hosted GitHub runner support
+- ✅ Admin signer config with threshold detection
 
 ---
 
-Made for thegoodeth by ChatGPT v2.
+## 📁 Project Structure
