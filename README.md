@@ -20,3 +20,19 @@ A fully automated, secure, multi-signature wallet interface powered by [Safe{Wal
 ---
 
 ## 📁 Project Structure
+Gnosis-vault🔐/
+├── .github/
+│   └── workflows/
+│       └── update-readme.yml           # GitHub Action to auto-update README
+├── dashboard/
+│   ├── public/
+│   ├── src/
+│   ├── app.config.ts
+│   └── package.json
+├── scripts/
+│   └── project-setup.ts                # Custom TypeScript runner to inject Safe data
+├── .env
+├── .env.example
+├── .gitignore
+├── README.md                           # This file auto-updates ✨
+└── vercel.json
